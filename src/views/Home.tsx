@@ -64,19 +64,11 @@ const items = [
 ];
 
 const Home = () => {
-    const [sortBy, setSortBy] = useState("recent");
-
   return (
-      <>
+      <div className="py-16 px-16">
           <ItemCategoryList/>
-
-          <div>Sort By</div>
-          <button className="bg-primary border border-primary px-8 py-3 font-medium
-                    rounded-md hover:bg-transparent hover:text-primary" onClick={() => setSortBy("recent")}>Most Recent</button>
-          <button className="bg-primary border border-primary px-8 py-3 font-medium
-                    rounded-md hover:bg-transparent hover:text-primary" onClick={() => setSortBy("price")}>Best Price</button>
-          <ItemList sortBy={sortBy} items={items}/>
-      </>
+          <ItemList items={items}/>
+      </div>
   )
 };
 

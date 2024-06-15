@@ -15,11 +15,11 @@ export const privateRoutes = [
         label: 'Home',
         element: <Home/>
     },
-    {
-        path: "buy",
-        label: 'Shop',
-        element: <Buy/>
-    },
+    // {
+    //     path: "buy",
+    //     label: 'Shop',
+    //     element: <Buy/>
+    // },
     {
         path: "orders",
         label: 'Orders',

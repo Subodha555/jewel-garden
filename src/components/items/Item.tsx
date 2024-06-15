@@ -27,7 +27,6 @@ const Item = ({img, title, priceLast, priceNow, currency, date}: Props) => {
     };
     return (
         <div className="bg-white shadow rounded overflow-hidden group" onClick={onClickItem}>
-            hey{itemName}
             <div className="relative">
                 <img src={img} alt="product 1" className="w-full"/>
                     <div className="absolute inset-0 bg-black bg-opacity-40 flex items-center
