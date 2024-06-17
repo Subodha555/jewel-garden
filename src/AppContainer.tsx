@@ -8,8 +8,8 @@ const AppContainer = () => {
     // const [store, setStore] = useState(null);
     //
     // useEffect(() => {
-    //     console.error("on store create");
-    //     setStore(CreateStore());
+    //     console.error("on app container");
+    //     // setStore(CreateStore());
     // }, []);
 
     return (

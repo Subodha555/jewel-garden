@@ -48,8 +48,8 @@ const Item = ({img, title, priceLast, priceNow, currency, date}: Props) => {
                     <h4 className="uppercase font-medium text-xl mb-2 text-gray-800 hover:text-primary transition">{title}</h4>
                 </a>
                 <div className="flex items-baseline mb-1 space-x-2">
-                    <p className="text-xl text-primary font-semibold">{currency}{priceLast}</p>
-                    <p className="text-sm text-gray-400 line-through">{currency}{priceNow}</p>
+                    <p className="text-xl text-primary font-semibold ">{currency}{priceNow}</p>
+                    <p className="text-sm text-gray-400 line-through">{priceLast !== undefined ? currency : ''}{priceLast}</p>
                 </div>
                 <div className="flex items-center">
                     <div className="flex gap-1 text-sm text-yellow-400">
