@@ -1,11 +1,4 @@
 import Header from "../components/Header";
-import Home from "../views/Home";
-import Buy from "../views/Buy";
-import Orders from "../views/Orders";
-import AccountSettings from "../views/AccountSettings";
-import {useState} from "react";
-import { auth, db, logout } from "../firebase";
-import Blog from "../Blog/Blog";
 import Footer from "../components/Footer";
 import {Outlet} from "react-router-dom";
 

@@ -13,7 +13,7 @@ const ItemView = () => {
 
     return (
         <div>
-            <Item  img={img} currency="$" priceLast="12.00" priceNow="10.99" title={"Cloe Ring - "+param.itemId}/>
+            <Item  img={img} currency="$" priceLast={12} priceNow={10.99} title={"Cloe Ring - "+param.itemId} date="2090/10/01"/>
         </div>
     )
 };

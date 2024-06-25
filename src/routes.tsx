@@ -1,7 +1,7 @@
 import Home from "./views/Home";
-import Buy from "./views/Buy";
 import Orders from "./views/Orders";
 import AccountSettings from "./views/AccountSettings";
+import Admin from "./views/Admin"
 import ItemView from "./views/ItemView";
 
 export const privateRoutes = [
@@ -15,11 +15,11 @@ export const privateRoutes = [
         label: 'Home',
         element: <Home/>
     },
-    {
-        path: "buy",
-        label: 'Shop',
-        element: <Buy/>
-    },
+    // {
+    //     path: "buy",
+    //     label: 'Shop',
+    //     element: <Buy/>
+    // },
     {
         path: "orders",
         label: 'Orders',
@@ -29,6 +29,11 @@ export const privateRoutes = [
         path: "accountSettings",
         label: 'Account Settings',
         element: <AccountSettings/>
+    },
+    {
+        path: "admin",
+        label: 'Admin',
+        element: <Admin/>
     }
 ];
 
