@@ -1,6 +1,7 @@
 import {useState} from "react";
 import {useSelector} from "react-redux";
 import logo from "/imgs/app-logo.jpg";
+import jewelLady from "/imgs/jewel-lady-3.jpg"
 import {privateRoutes} from "../routes";
 import {Link} from "react-router-dom";
 import {RootState} from "../store/redux/store";
@@ -37,7 +38,7 @@ const Header = () => {
             </nav>
 
             <div className="bg-cover bg-no-repeat bg-center py-36"
-                 style={{backgroundImage: 'url("/imgs/jewel-lady-3.jpg")'}}>
+                 style={{backgroundImage: `url(${jewelLady})`}}>
                 <div className="container">
                     <h1 className="text-6xl text-black-800 font-medium mb-4 capitalize">Radiance <br/>Redefined</h1>
                     <p className="text-white">Embrace the essence of elegance and let your <br/>

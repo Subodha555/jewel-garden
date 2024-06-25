@@ -16,14 +16,17 @@ import {
     where,
     addDoc,
 } from "firebase/firestore";
+
 const firebaseConfig = {
-    apiKey: "AIzaSyBzh66S3qT6wUnOLYrrgf33m1ZF4jIx2Ps",
-    authDomain: "jewel-garden.firebaseapp.com",
-    projectId: "jewel-garden",
-    storageBucket: "jewel-garden.appspot.com",
-    messagingSenderId: "386872933475",
-    appId: "1:386872933475:web:5d44f085d56bb869cd0c56"
+    apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+    authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
+
+
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
