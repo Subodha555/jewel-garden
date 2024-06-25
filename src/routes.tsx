@@ -1,5 +1,4 @@
 import Home from "./views/Home";
-import Buy from "./views/Buy";
 import Orders from "./views/Orders";
 import AccountSettings from "./views/AccountSettings";
 import Admin from "./views/Admin"

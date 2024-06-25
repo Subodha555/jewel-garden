@@ -1,48 +1,15 @@
 import {useState} from "react";
 import {useSelector} from "react-redux";
-import logo from "/imgs/app-logo.jpg"
-// import "../css/Header.css";
-import Avatar from "./Avatar";
-import Toolbar from '@mui/material/Toolbar';
-import jewelLady from '/imgs/jewel-lady-3.jpg';
-import Home from "../views/Home";
-import Buy from "../views/Buy";
-import Orders from "../views/Orders";
-import AccountSettings from "../views/AccountSettings";
+import logo from "/imgs/app-logo.jpg";
 import {privateRoutes} from "../routes";
 import {Link} from "react-router-dom";
+import {RootState} from "../store/redux/store";
 
 const Header = () => {
     const [selectedHeaderIndex, setSelectedHeaderIndex] = useState(0);
-    const user = useSelector(state => state.user);
-
-    const headerIds = {HOME: 'HOME', SHOP: 'SHOP', ORDERS: 'ORDERS', ACCOUNT_SETTINGS: 'ACCOUNT SETTINGS'};
-    const headerTabs = [
-        {
-            id: headerIds.HOME,
-            label: 'Home',
-            path: "home"
-        },
-        {
-            id: headerIds.SHOP,
-            label: 'Shop',
-            path: 'buy'
-        },
-        {
-            id: headerIds.ORDERS,
-            label: 'Orders',
-            path: "orders"
-        },
-        {
-            id: headerIds.ACCOUNT_SETTINGS,
-            label: 'Account Settings',
-            pageName: <AccountSettings/>
-        }
-    ];
-
-    const onSelect = (index) => {
+    const user = useSelector((state: RootState) => state.user);
+    const onSelect = (index: number) => {
         setSelectedHeaderIndex(index);
-        // onSelectTab(headerTabs[index]);
     };
     return (
         <>

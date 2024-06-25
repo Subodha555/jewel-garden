@@ -1,14 +1,15 @@
 import Item from "./Item";
 import img from "/imgs/jewel3.jpeg";
 import { useEffect, useState } from "react";
-import { fetchItems } from "../../store/redux/reducers/itemList";
-import { useDispatch, useSelector } from "react-redux";
+import { fetchItems, Item as ItemType } from "../../store/redux/reducers/itemList";
+import { useSelector } from "react-redux";
+import {useAppDispatch} from "../../store/redux/store"
 import { RootState } from "../../store/redux/store";
 
 const ItemList = () => {
-    const [sortedItems, setSortedItems] = useState([]);
+    const [sortedItems, setSortedItems] = useState<ItemType[]>([]);
     const [sortBy, setSortBy] = useState("recent");
-    const items = useSelector((state: RootState) => state.itemList.items.data) || [];
+    const items = useSelector((state: RootState) => state.itemList.items) || []; // removeditems.data since this is fixed by store
     // const items = [
     //     {
     //         id: "001",
@@ -67,7 +68,7 @@ const ItemList = () => {
     //         date: "2023/03/01"
     //     }
     // ];
-    const dispatch = useDispatch();
+    const dispatch = useAppDispatch();
 
     useEffect(() => {
         if (items.length === 0) {
@@ -81,12 +82,12 @@ const ItemList = () => {
             let tempSort = [];
             if (sortBy === "recent") {
                 tempSort = [...items].sort((a, b) => {
-                    const firstDate = new Date(a.date).getTime();
-                    const secondDate = new Date(b.date).getTime();
+                    const firstDate = new Date(a.dateCreated).getTime();
+                    const secondDate = new Date(b.dateCreated).getTime();
                     return secondDate - firstDate;
                 });
             } else {
-                tempSort = [...items].sort((a, b) => a.priceNow - b.priceNow);
+                tempSort = [...items].sort((a, b) => a.price - b.price);
             }
             setSortedItems(tempSort);
             console.log("on sort best offer", tempSort);

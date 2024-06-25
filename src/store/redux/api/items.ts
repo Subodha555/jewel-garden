@@ -1,6 +1,7 @@
 import { API, handleApiError } from "./utils";
+import {Item} from "../reducers/itemList"
 
-export const saveItem = async (item) => {
+export const saveItem = async (item: Item) => {
   try {
     const res = await API.post("/products", item);
     return { error: null, data: res.data };
@@ -12,7 +13,7 @@ export const saveItem = async (item) => {
 export const getItems = async () => {
   try {
     const res = await API.get("/products");
-    return { error: null, data: res.data };
+    return res.data;
   } catch (error) {
     return handleApiError(error);
   }

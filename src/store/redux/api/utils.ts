@@ -1,5 +1,9 @@
 import axios from "axios";
 
+type error = {
+    response: object
+}
+
 // const BASE_URL = process.env.REACT_APP_API_URL;
 const BASE_URL = "http://localhost:3000/api/v1";
 // const PRODUCTS_URL = `${BASE_URL}/products`;
@@ -21,7 +25,7 @@ const BASE_URL = "http://localhost:3000/api/v1";
 // };
 
 export const API = axios.create({
-  baseURL: BASE_URL,
+    baseURL: BASE_URL
 });
 
 // export const PRODUCTS_API = axios.create({
@@ -39,7 +43,7 @@ export const API = axios.create({
 //   return authInterceptor(req);
 // });
 
-export const handleApiError = async (error) => {
+export const handleApiError = async (error: error | any) => {
   try {
     const errorMessage =
       error.response?.data?.message || "An unexpected error occurred.";

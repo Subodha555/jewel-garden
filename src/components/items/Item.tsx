@@ -6,7 +6,7 @@ import {useNavigate} from "react-router-dom";
 
 interface Props {
     img: string,
-    priceLast: number,
+    priceLast?: number,
     priceNow: number,
     currency: string,
     title: string,

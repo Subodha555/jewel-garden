@@ -1,6 +1,6 @@
 import axios from "axios";
-import {useEffect, useState} from "react";
-
+import {ChangeEvent, useEffect, useState} from "react";
+import {InitialItem} from "../store/redux/reducers/itemList"
 let BASE_URL = "http://localhost:3000"
 
 const Admin = () => {
@@ -15,10 +15,10 @@ const Admin = () => {
         category: "",
         countInStock: 0,
         rating: "",
-        numReviews: "",
+        numReviews: 0,
         isFeatured: false,
     };
-    const [product, setProduct] = useState(initialProduct);
+    const [product, setProduct] = useState<InitialItem>(initialProduct);
     useEffect(() => {
         // axios
         //     .get(`${BASE_URL}/api/v1/products`, {
@@ -52,10 +52,31 @@ const Admin = () => {
         setProduct(initialProduct);
     };
 
-    const onInputChange = (e, field) => {
+    const isStringField = (key: keyof InitialItem): key is keyof Omit<InitialItem, 'price' | 'priceLast' | 'countInStock' | 'numReviews' | 'isFeatured'> => {
+        return typeof product[key] === 'string' || typeof product[key] === 'undefined';
+    };
+
+    const isNumberField = (key: keyof InitialItem): key is 'price' | 'priceLast' | 'countInStock' | 'numReviews' => {
+        return key === 'price' || key === 'priceLast' || key === 'countInStock' || key === 'numReviews';
+    };
+
+    const isBooleanField = (key: keyof InitialItem): key is 'isFeatured' => {
+        return key === 'isFeatured';
+    };
+
+    const onInputChange = (e: ChangeEvent<HTMLInputElement>, field: keyof InitialItem) => {
         console.error(e.target.value, field);
         let tempProduct = {...product}
-        tempProduct[field] = e.target.value;
+        // tempProduct[field] = e.target.value;
+
+        if (isStringField(field)) {
+            tempProduct[field] = e.target.value as any;
+        } else if (isNumberField(field)) {
+            tempProduct[field] = parseFloat(e.target.value) as any;
+        } else if (isBooleanField(field)) {
+            tempProduct[field] = e.target.checked as any;
+        }
+
         setProduct(tempProduct);
     };
   return (

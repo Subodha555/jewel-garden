@@ -1,18 +1,27 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 import {getItems} from "../api/items";
 
-export type Item = {
+export interface InitialItem {
     name: string;
-    exchange: string;
-    type: string;
     currency: string;
-    vendor?: string;
-    provider?: string;
-    id?:string
-    description?: string
-};
+    description?: string,
+    price: number,
+    priceLast: number | undefined,
+    image: string,
+    brand: string,
+    category: string,
+    countInStock: number,
+    rating: string,
+    numReviews: number,
+    isFeatured: boolean
+}
 
-interface ItemListState {
+export interface Item extends InitialItem {
+    id?:string
+    dateCreated: string,
+}
+
+type ItemListState = {
     items: Item[];
     error: string | null;
 }
@@ -23,7 +32,7 @@ const initialState: ItemListState = {
 };
 
 export const fetchItems = createAsyncThunk<
-    Symbol[],
+    Item[],
     void,
     { rejectValue: string }
     >("itemList/fetchItems", async (_, {rejectWithValue}) => {
@@ -41,13 +50,14 @@ export const fetchItems = createAsyncThunk<
     }
 });
 
+
 const ItemListSlice = createSlice({
     name: "itemList",
     initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchItems.fulfilled, (state, action) => {
+            .addCase(fetchItems.fulfilled, (state, action: PayloadAction<Item[]>) => {
                 console.log(action.payload);
                 state.items = action.payload;
             })
