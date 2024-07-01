@@ -40,6 +40,6 @@ export const privateRoutes = [
 export const nonMenuRoutes = [
     {
         path: "item/:itemId",
-        element: <ItemView />,
+        element: <ItemView />
     }
 ];

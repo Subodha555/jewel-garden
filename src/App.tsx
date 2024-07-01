@@ -13,12 +13,14 @@ import {nonMenuRoutes, privateRoutes} from "./routes"
 
 function App() {
     const dispatch = useDispatch();
+    let isAdmin = true;
 
     useEffect(()=> {
         dispatch(setUserDetails({
             name: "subodha",
             email: "subodha@gmail.com",
-            address: "colombo"
+            address: "colombo",
+            isAdmin: isAdmin
         }));
     }, []);
 
@@ -31,9 +33,8 @@ function App() {
                         <Route  path="/register" element={<Register />} />
                         <Route  path="/reset" element={<Reset />} />
                         <Route  path="/dashboard" element={<Dashboard />}>
-                            {privateRoutes.map((route) => (
-                                <Route key={route.path} path={route.path} element={route.element}/>
-                            ))}
+                            {privateRoutes.map((route) =>
+                                (route.path !== "admin" || isAdmin) && (<Route key={route.path} path={route.path} element={route.element}/>))}
                             {nonMenuRoutes.map((route) => (
                                 <Route key={route.path} path={route.path} element={route.element}/>
                             ))}

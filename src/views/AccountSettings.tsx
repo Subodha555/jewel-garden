@@ -1,6 +1,6 @@
 const AccountSettings = () => {
   return (
-      <div>AccountSettings</div>
+      <div>Coming Soon ...</div>
   )
 };
 
