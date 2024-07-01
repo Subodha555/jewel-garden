@@ -8,4 +8,10 @@
 
 
 1. Add image and other dropdowns
-2. update products
+2. update/delete products
+3. when reload on dashboard page in release not loading the resources
+4. Need to first load items without images, because this is very slow, then load images and update the store
+5. Login and authentication
+6. Item page and magnifier
+7. Add a item add completed message and clear the fields
+8. Loader - add skeleton views

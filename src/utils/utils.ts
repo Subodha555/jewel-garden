@@ -1,45 +1,63 @@
+import necklace from "/imgs/necklace.jpeg";
+import ring from "/imgs/ring.jpeg";
+import bracelet from "/imgs/bracelet.jpeg";
+import earings from "/imgs/earings.jpeg";
+import anklets from "/imgs/anklets.jpeg";
+import pendants from "/imgs/pendants.jpeg";
+
 export const categories = [
     {
-        name: "neckalaces",
+        id: "neckalaces",
         label: "Necklaces",
-        img: ""
+        img: necklace
     },
     {
-        name: "rings",
+        id: "rings",
         label: "Rings",
-        img: ""
+        img: ring
     },
     {
-        name: "bracelets",
+        id: "bracelets",
         label: "Bracelets",
-        img: ""
+        img: bracelet
     },
     {
-        name: "earings",
+        id: "earings",
         label: "Earings",
-        img: ""
+        img: earings
     },
     {
-        name: "anklets",
+        id: "anklets",
         label: "Anklets",
-        img: ""
+        img: anklets
     },
     {
-        name: "pendants",
+        id: "pendants",
         label: "Pendants",
-        img: ""
+        img: pendants
     }
 ];
 
 export const brands = [
     {
-        name: "silver",
-        label: "Silver",
-        img: ""
+        id: "silver",
+        label: "Silver"
     },
     {
-        name: "gold",
-        label: "Gold",
-        img: ""
+        id: "gold",
+        label: "Gold"
     }
-]
+];
+
+export const currencies = [
+    {
+        id: "lkr",
+        label: "LKR"
+    },
+    {
+        id: "usd",
+        label: "USD"
+    }
+];
+
+export const maxItemsPurchaseCount = 5;

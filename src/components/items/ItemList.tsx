@@ -9,6 +9,7 @@ import { RootState } from "../../store/redux/store";
 const ItemList = () => {
     const [sortedItems, setSortedItems] = useState<ItemType[]>([]);
     const [sortBy, setSortBy] = useState("recent");
+    const [isLoading, setIsLoading] = useState(true);
     const items = useSelector((state: RootState) => state.itemList.items) || []; // removeditems.data since this is fixed by store
     // const items = [
     //     {
@@ -73,6 +74,8 @@ const ItemList = () => {
     useEffect(() => {
         if (items.length === 0) {
             dispatch(fetchItems());
+        } else {
+            setIsLoading(false);
         }
     }, [dispatch, items.length]);
 
@@ -97,30 +100,33 @@ const ItemList = () => {
     return (
         <div className="mt-10">
             <h2 className="text-2xl font-medium text-gray-800 uppercase mb-6">Recommended for You</h2>
-            <button
-                className="bg-primary border border-primary px-8 py-3 font-medium mb-5 rounded-md hover:bg-transparent hover:text-primary"
-                onClick={() => setSortBy("recent")}
-            >
-                Sort Most Recent
-            </button>
-            <button
-                className="bg-primary border border-primary px-8 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary"
-                onClick={() => setSortBy("price")}
-            >
-                Sort Best Price
-            </button>
+            {/*<button*/}
+            {/*    className="bg-primary border border-primary px-8 py-3 font-medium mb-5 rounded-md hover:bg-transparent hover:text-primary"*/}
+            {/*    onClick={() => setSortBy("recent")}*/}
+            {/*>*/}
+            {/*    Sort Most Recent*/}
+            {/*</button>*/}
+            {/*<button*/}
+            {/*    className="bg-primary border border-primary px-8 py-3 font-medium rounded-md hover:bg-transparent hover:text-primary"*/}
+            {/*    onClick={() => setSortBy("price")}*/}
+            {/*>*/}
+            {/*    Sort Best Price*/}
+            {/*</button>*/}
             <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                 {sortedItems.map((item) => (
                     <Item
                         key={item.id}
-                        img={img}
-                        currency="$"
+                        id={item.id}
+                        img={item.image}
+                        currency={item.currency}
                         priceLast={item.priceLast}
                         priceNow={item.price}
                         title={item.name}
+                        description={item.description}
                         date={item.dateCreated}
                     />
                 ))}
+                {isLoading && <div>Loading ....</div>}
             </div>
         </div>
     );
