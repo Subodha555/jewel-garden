@@ -1,6 +1,6 @@
 const AccountSettings = () => {
   return (
-      <div>Coming Soon ...</div>
+      <div className="text-3xl text-center">Coming Soon ...</div>
   )
 };
 
