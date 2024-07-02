@@ -26,7 +26,7 @@ function App() {
 
     return (
         <div className="app">
-            <Router basename="/jewel-garden">
+            <Router>
                 <Suspense fallback={<FallbackLoading />}>
                     <Routes>
                         <Route  path="/" element={<Login />} />

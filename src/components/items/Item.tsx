@@ -8,13 +8,13 @@ import {faHeart, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 import {currencyFormatter} from "../../utils/formatters";
 
 interface Props {
-    id: string,
+    id?: string,
     img: string,
     priceLast?: number,
     priceNow: number,
     currency: string,
     title: string,
-    description: string,
+    description?: string,
     date: string
 }
 

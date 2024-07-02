@@ -5,7 +5,18 @@ import earings from "/imgs/earings.jpeg";
 import anklets from "/imgs/anklets.jpeg";
 import pendants from "/imgs/pendants.jpeg";
 
-export const categories = [
+export type categoryType = {
+  id: string,
+  label: string,
+  img: string
+};
+
+export type dropdownOptionType = {
+    id: string,
+    label: string
+}
+
+export const categories: categoryType[] = [
     {
         id: "neckalaces",
         label: "Necklaces",
@@ -38,7 +49,7 @@ export const categories = [
     }
 ];
 
-export const brands = [
+export const brands: dropdownOptionType[] = [
     {
         id: "silver",
         label: "Silver"
@@ -49,7 +60,7 @@ export const brands = [
     }
 ];
 
-export const currencies = [
+export const currencies: dropdownOptionType[] = [
     {
         id: "lkr",
         label: "LKR"

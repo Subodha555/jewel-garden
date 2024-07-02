@@ -1,5 +1,5 @@
 import { API, handleApiError } from "./utils";
-import {Item} from "../reducers/itemList"
+import {Item} from "../reducers/itemList";
 
 export const saveItem = async (item: Item) => {
   try {
@@ -10,25 +10,26 @@ export const saveItem = async (item: Item) => {
   }
 };
 
-export const getItems = async () => {
+export const getItems = async (): Promise<Item[]> => {
   try {
     const res = await API.get("/products");
 
-    const getImages = async (res) => {
+    console.log("res", res);
+
+    const getImages = async (res: {data: Item[]}) => {
         for (let i=0; i< res.data.length; i++) {
-            let itemImage = "";
+            let itemImage: {data: Blob};
             try {
                 itemImage = await API.get(`/products/image/${res.data[i].image}`, {
                     responseType: 'blob' // Ensure we get the image as a blob
                 });
                 console.error("itemImage", itemImage, res.data[i].name);
+
+                if (itemImage.data) {
+                    res.data[i].image  = URL.createObjectURL(itemImage.data)
+                }
             } catch (e) {
                 console.error("image loading failed");
-            }
-            if (itemImage.data) {
-                res.data[i].image  = URL.createObjectURL(itemImage.data)
-            } else {
-                res.data[i].image = itemImage;
             }
         }
 
@@ -37,8 +38,10 @@ export const getItems = async () => {
 
     let updatedResWithImage = await getImages(res);
 
+    console.log("returned ", updatedResWithImage.data);
     return updatedResWithImage.data;
   } catch (error) {
-    return handleApiError(error);
+     // handleApiError(error);
+    return [];
   }
 };
