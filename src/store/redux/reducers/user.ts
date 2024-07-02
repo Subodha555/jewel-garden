@@ -3,13 +3,15 @@ import {createSlice} from "@reduxjs/toolkit";
 interface User {
     name: string,
     email: string,
-    address: string
+    address: string,
+    isAdmin: boolean
 }
 
 const initialState: User = {
     name: "",
     email: "",
-    address: ""
+    address: "",
+    isAdmin: false
 };
 
 const user = createSlice({

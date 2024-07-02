@@ -1,11 +1,9 @@
 import axios from "axios";
-import {ChangeEvent, useEffect, useState, useRef} from "react";
+import {ChangeEvent, useState, useRef} from "react";
 import {InitialItem} from "../store/redux/reducers/itemList";
-import {brands} from "../utils/utils";
-import {currencies} from "../utils/utils";
-import {categories} from "../utils/utils";
+import {brands, currencies, categories, dropdownOptionType} from "../utils/utils";
 import Dropdown from "../components/Dropdowm";
-let BASE_URL = "http://localhost:3000";
+let BASE_URL = import.meta.env.VITE_APP_API_URL;
 
 const Admin = () => {
     const fileInput = useRef<HTMLInputElement>(null);
@@ -32,12 +30,24 @@ const Admin = () => {
 
 
         const formData = new FormData();
-        for (const key in product) {
-            formData.append(key, product[key]);
+        formData.append("name", product.name as string);
+        formData.append("description", product.description as string);
+        formData.append("brand", product.brand as string);
+        formData.append("price", product.price as any);
+        formData.append("priceLast", product.priceLast as any);
+        formData.append("currency", product.currency as string);
+        formData.append("category", product.category as string);
+        formData.append("countInStock", product.countInStock as any);
+        formData.append("rating", product.rating as string);
+        formData.append("numReviews", product.numReviews as any);
+        formData.append("isFeatured", product.isFeatured as any);
+
+        const input = fileInput.current?.files && fileInput.current?.files[0];
+        if (input) {
+            formData.append('image', input);
         }
-        formData.append('image', fileInput.current.files[0]);
         axios
-            .put(`${BASE_URL}/api/v1/products`, formData, {
+            .put(`${BASE_URL}/products`, formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
                 }
@@ -83,17 +93,17 @@ const Admin = () => {
     };
 
     // check these callbacks have performance issues
-    const onSelectBrand = (option) => {
+    const onSelectBrand = (option: dropdownOptionType) => {
         setProduct({...product, ...{brand: option.id}});
         console.error("product", product);
     };
 
-    const onSelectCurrency = (option) => {
+    const onSelectCurrency = (option: dropdownOptionType) => {
         setProduct({...product, ...{currency: option.id}});
         console.error("product", product);
     };
 
-    const onSelectCategory = (option) => {
+    const onSelectCategory = (option: dropdownOptionType) => {
         setProduct({...product, ...{category: option.id}});
         console.error("product", product);
     };

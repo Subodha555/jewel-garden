@@ -1,8 +1,9 @@
 import { useState, useRef, useEffect } from 'react';
+import {dropdownOptionType} from "../utils/utils";
 
 type dropdownProps = {
-    options: object;
-    onSelect: (option: object) => void
+    options: dropdownOptionType[];
+    onSelect: (option: dropdownOptionType) => void
 }
 
 const Dropdown = ({options, onSelect}: dropdownProps) => {
@@ -12,8 +13,9 @@ const Dropdown = ({options, onSelect}: dropdownProps) => {
 
     // Close the dropdown if clicked outside
     useEffect(() => {
-        const handleClickOutside = (event) => {
-            if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        const handleClickOutside = (event: DocumentEventMap["mousedown"]) => {
+            const target = event.target as HTMLElement;
+            if (dropdownRef.current && target.role !== "menuitem") {
                 setIsOpen(false);
             }
         };
@@ -25,7 +27,7 @@ const Dropdown = ({options, onSelect}: dropdownProps) => {
 
     const toggleDropdown = () => setIsOpen(!isOpen);
 
-    const onSelectItem = (option) => {
+    const onSelectItem = (option: dropdownOptionType) => {
         toggleDropdown();
         setSelectedLabel(option.label);
         onSelect(option)

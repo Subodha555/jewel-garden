@@ -1,5 +1,4 @@
 import Item from "./Item";
-import img from "/imgs/jewel3.jpeg";
 import { useEffect, useState } from "react";
 import { fetchItems, Item as ItemType } from "../../store/redux/reducers/itemList";
 import { useSelector } from "react-redux";
@@ -8,7 +7,7 @@ import { RootState } from "../../store/redux/store";
 
 const ItemList = () => {
     const [sortedItems, setSortedItems] = useState<ItemType[]>([]);
-    const [sortBy, setSortBy] = useState("recent");
+    // const [sortBy, setSortBy] = useState("recent");
     const [isLoading, setIsLoading] = useState(true);
     const items = useSelector((state: RootState) => state.itemList.items) || []; // removeditems.data since this is fixed by store
     // const items = [
@@ -83,19 +82,19 @@ const ItemList = () => {
     useEffect(() => {
         if (items.length > 0) {
             let tempSort = [];
-            if (sortBy === "recent") {
+            // if (sortBy === "recent") {
                 tempSort = [...items].sort((a, b) => {
                     const firstDate = new Date(a.dateCreated).getTime();
                     const secondDate = new Date(b.dateCreated).getTime();
                     return secondDate - firstDate;
                 });
-            } else {
-                tempSort = [...items].sort((a, b) => a.price - b.price);
-            }
+            // } else {
+            //     tempSort = [...items].sort((a, b) => a.price - b.price);
+            // }
             setSortedItems(tempSort);
             console.log("on sort best offer", tempSort);
         }
-    }, [sortBy, items]);
+    }, [items]);
 
     return (
         <div className="mt-10">

@@ -35,8 +35,8 @@ function App() {
     // };
 
     const setHeights = useCallback(() => {
-        const headerHeight = document.querySelector("header").offsetHeight;
-        const footerHeight = document.querySelector("footer").offsetHeight;
+        const headerHeight = document.querySelector("header")?.offsetHeight;
+        const footerHeight = document.querySelector("footer")?.offsetHeight;
 
         document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
         document.documentElement.style.setProperty('--footer-height', `${footerHeight}px`);

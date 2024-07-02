@@ -1,21 +1,18 @@
-import Item from "../components/items/Item";
-// import img from "/imgs/jewel3.jpeg";
-import {useParams, useLocation} from "react-router-dom";
-import {useEffect, useState} from "react";
-import Dropdown from "../components/Dropdowm";
-import {brands, categories, currencies, maxItemsPurchaseCount} from "../utils/utils";
+import {useLocation} from "react-router-dom";
+import {useState} from "react";
+import {maxItemsPurchaseCount} from "../utils/utils";
 import {currencyFormatter} from "../utils/formatters";
 
 
 const ItemView = () => {
     const location = useLocation();
-    const {id, img, title, priceLast, priceNow, currency, date, description} = location.state || {};
+    const {img, title, priceLast, priceNow, currency, description} = location.state || {};
     const [quantity, setQuantity] = useState(1);
     const [imageLeft, setImageLeft] = useState(0);
     const [imageTop, setImageTop] = useState(0);
     const [showImagePreview, setShowImagePreview] = useState(false);
 
-    const onHover = (event) => {
+    const onHover = (event: React.MouseEvent) => {
         setShowImagePreview(true);
         setImageLeft(event.nativeEvent.offsetX);
         setImageTop(event.nativeEvent.offsetY);

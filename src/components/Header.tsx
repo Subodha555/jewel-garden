@@ -18,7 +18,7 @@ const Header = () => {
     }, [location.pathname]);
 
     useEffect(() => {
-        const headerHeight = document.querySelector("header").offsetHeight;
+        const headerHeight = document.querySelector("header")?.offsetHeight;
         console.log("header height from header", headerHeight);
         document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
     }, [showBanner]);
@@ -36,7 +36,7 @@ const Header = () => {
                         </Link>
                         <div className="flex items-center space-x-6 capitalize">
                             {
-                                privateRoutes.map((tab, index) => {
+                                privateRoutes.map((tab) => {
                                     return (
                                         tab.path === "" || (tab.path === "admin" && !user.isAdmin) ? "" : <Link to={tab.path} key={tab.path}  className={selectedMenu.path === tab.path ? 'text-gray-200 hover:text-white transition active' : 'text-gray-200 hover:text-white transition'} onClick={() => onSelect(tab)}>{tab.label}</Link>
                                     )
