@@ -1,9 +1,9 @@
-#Jewellery ecommerce app
+# Jewellery ecommerce app
 
 This is the front end web app written with React, Tailwind and Typescript for a Jewellery ecommerce app.
 
-###Install Dependancies
+### Install Dependencies
 `npm install`
 
-###Run Project
+### Run Project
 `npm run dev`
