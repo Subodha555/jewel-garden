@@ -1,8 +1,6 @@
-import {useEffect, Suspense} from "react";
-import {useDispatch} from "react-redux";
-import {setUserDetails} from "./store/redux/reducers/user";
+import {Suspense} from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {BrowserRouter as Router, Route, Routes} from "react-router-dom";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Reset from "./pages/Reset";
@@ -10,23 +8,30 @@ import Dashboard from "./pages/Dashboard";
 import './index.css'
 import FallbackLoading from "./components/loader/FallbackLoading"
 import {nonMenuRoutes, privateRoutes} from "./routes"
+import {isAdmin} from "./utils/utils";
 
 function App() {
-    const dispatch = useDispatch();
-    let isAdmin = true;
-
-    useEffect(()=> {
-        dispatch(setUserDetails({
-            name: "subodha",
-            email: "subodha@gmail.com",
-            address: "colombo",
-            isAdmin: isAdmin
-        }));
-    }, []);
+    // const dispatch = useDispatch();
+    // const navigate = useNavigate();
+    // const [user, loading] = useAuthState(auth);
+    //
+    // useEffect(()=> {
+    //     console.log("user is", user, loading);
+    //     if (user) {
+    //         dispatch(setUserDetails({
+    //             name: user.displayName,
+    //             email: user.email,
+    //             image: user.photoURL,
+    //             isAdmin: isAdmin
+    //         }));
+    //     } else if (user === null && !loading) {
+    //         // navigate("/register");
+    //     }
+    // }, [user, loading]);
 
     return (
         <div className="app">
-            <Router>
+            <Router basename="/jewel-garden">
                 <Suspense fallback={<FallbackLoading />}>
                     <Routes>
                         <Route  path="/" element={<Login />} />

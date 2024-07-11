@@ -3,14 +3,14 @@ import {createSlice} from "@reduxjs/toolkit";
 interface User {
     name: string,
     email: string,
-    address: string,
+    image: string,
     isAdmin: boolean
 }
 
 const initialState: User = {
     name: "",
     email: "",
-    address: "",
+    image: "",
     isAdmin: false
 };
 

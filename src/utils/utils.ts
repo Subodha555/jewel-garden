@@ -72,3 +72,4 @@ export const currencies: dropdownOptionType[] = [
 ];
 
 export const maxItemsPurchaseCount = 5;
+export const isAdmin = false;

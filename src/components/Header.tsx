@@ -1,6 +1,7 @@
 import {useState, useEffect} from "react";
 import {useSelector} from "react-redux";
 import logo from "/imgs/app-logo.jpg";
+import userImg from "/public/imgs/user.svg";
 import jewelLady from "/imgs/jewel-lady-4.webp"
 import {privateRoutes} from "../routes";
 import {Link, useLocation} from "react-router-dom";
@@ -9,6 +10,7 @@ import {RootState} from "../store/redux/store";
 const Header = () => {
     const [selectedMenu, setSelectedMenu] = useState(privateRoutes[0]);
     const [showBanner, setShowBanner] = useState(true);
+    const [isProfileImageLoaded, setProfileImageLoaded] = useState(false);
     const user = useSelector((state: RootState) => state.user);
     const location = useLocation();
 
@@ -19,12 +21,15 @@ const Header = () => {
 
     useEffect(() => {
         const headerHeight = document.querySelector("header")?.offsetHeight;
-        console.log("header height from header", headerHeight);
         document.documentElement.style.setProperty('--header-height', `${headerHeight}px`);
     }, [showBanner]);
 
     const onSelect = (selectedMenu: typeof privateRoutes[0]) => {
         setSelectedMenu(selectedMenu);
+    };
+
+    const onLoad = () => {
+        setProfileImageLoaded(true);
     };
     return (
         <header className={showBanner ? "" : "h-[120px]"}>
@@ -44,10 +49,15 @@ const Header = () => {
                             }
                         </div>
                         {/*<a href="pages/login.html" className="text-gray-200 hover:text-white transition">Login</a>*/}
-                        <div className="text-white">
-                            <span className="pr-2">{user.name}</span>
-                            <span className="pr-2">|</span>
-                            <span>{user.email}</span>
+                        <div className="text-white flex">
+                            <img src={user.image} alt="profile" onLoad={onLoad} className={isProfileImageLoaded ? `w-12 h-12 border-0 rounded-3xl` : `w-12 h-12 border-0 rounded-3xl hidden` }/>
+                            {  !isProfileImageLoaded && <img src={userImg} className="w-12 h-12 border-grey-0 rounded-3xl bg-grey-300"/>}
+                            {/*<span className="pr-2">{user.name}</span>*/}
+                            {/*<span className="pr-2">|</span>*/}
+                            {/*<div>*/}
+                            {/*    <div>{user.email}</div>*/}
+                            {/*    <div>{user.name}</div>*/}
+                            {/*</div>*/}
                             {/*{user.address}*/}
                         </div>
                     </div>
