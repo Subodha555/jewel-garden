@@ -1,7 +1,3 @@
-import {useEffect} from "react";
-import {useSelector, useDispatch} from "react-redux";
-import {RootState} from "../../store/redux/store"
-import {updateName} from "../../store/redux/reducers/jewelleryItem";
 import {useNavigate} from "react-router-dom";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faHeart, faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
@@ -19,15 +15,9 @@ interface Props {
 }
 
 const Item = ({id, img, title, priceLast, priceNow, currency, date, description}: Props) => {
-    const itemName = useSelector((state: RootState) => state.jewelleryItem.name);
-    const dispatch = useDispatch();
     const navigate = useNavigate();
-    useEffect(() => {
-        console.log("itemName", itemName);
-    }, []);
 
     const onClickItem = () => {
-        dispatch(updateName("Jade Ring"));
         navigate(`/dashboard/item/${id}`, {state: {id, img, title, priceLast, priceNow, currency, date, description}});
     };
     return (

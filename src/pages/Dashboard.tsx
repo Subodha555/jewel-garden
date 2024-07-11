@@ -1,10 +1,14 @@
 import Header from "../components/Header";
 import Footer from "../components/Footer";
-import {Outlet} from "react-router-dom";
+import {Outlet, useNavigate} from "react-router-dom";
 import {useEffect, useCallback} from "react";
+import {useDispatch} from "react-redux";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "../firebase";
+import {setUserDetails} from "../store/redux/reducers/user";
+import {isAdmin} from "../utils/utils";
 
 function App() {
-    console.log("window height", window.innerHeight);
     // const headerIds = {HOME: 'HOME', SHOP: 'SHOP', ORDERS: 'ORDERS', ACCOUNT_SETTINGS: 'ACCOUNT SETTINGS'};
     // const headerTabs = [
     //     {
@@ -33,6 +37,24 @@ function App() {
     // const onChangeTab = (tab) => {
     //     setSelectedTab(tab)
     // };
+
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const [user, loading] = useAuthState(auth);
+
+    useEffect(()=> {
+        if (user) {
+            dispatch(setUserDetails({
+                name: user.displayName,
+                email: user.email,
+                image: user.photoURL,
+                isAdmin: isAdmin
+            }));
+        } else if (user === null && !loading) {
+            navigate("/");
+        }
+    }, [user, loading]);
+
 
     const setHeights = useCallback(() => {
         const headerHeight = document.querySelector("header")?.offsetHeight;

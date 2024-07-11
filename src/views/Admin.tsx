@@ -25,9 +25,7 @@ const Admin = () => {
     const [product, setProduct] = useState<InitialItem>(initialProduct);
 
     const addItem = () => {
-        console.error("add item", product);
         // Todo: move this to store
-
 
         const formData = new FormData();
         formData.append("name", product.name as string);
@@ -95,17 +93,14 @@ const Admin = () => {
     // check these callbacks have performance issues
     const onSelectBrand = (option: dropdownOptionType) => {
         setProduct({...product, ...{brand: option.id}});
-        console.error("product", product);
     };
 
     const onSelectCurrency = (option: dropdownOptionType) => {
         setProduct({...product, ...{currency: option.id}});
-        console.error("product", product);
     };
 
     const onSelectCategory = (option: dropdownOptionType) => {
         setProduct({...product, ...{category: option.id}});
-        console.error("product", product);
     };
   return (
       <div className="p-10">

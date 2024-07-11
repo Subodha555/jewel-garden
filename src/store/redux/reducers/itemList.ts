@@ -38,10 +38,8 @@ export const fetchItems = createAsyncThunk<
     >("itemList/fetchItems", async (_, {rejectWithValue}) => {
     try {
         const response = await getItems();
-        console.error('fetchFavoriteWatchlistSymbols :: ', response);
         return response;
     } catch (error) {
-        console.error('fetchFavoriteWatchlistSymbols :: ', error)
         if (error instanceof Error) {
             return rejectWithValue(error.message);
         } else {
@@ -58,7 +56,6 @@ const ItemListSlice = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(fetchItems.fulfilled, (state, action: PayloadAction<Item[]>) => {
-                console.log(action.payload);
                 state.items = action.payload;
             })
             .addCase(fetchItems.rejected, (state, action) => {

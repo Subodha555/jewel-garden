@@ -14,8 +14,6 @@ export const getItems = async (): Promise<Item[]> => {
   try {
     const res = await API.get("/products");
 
-    console.log("res", res);
-
     const getImages = async (res: {data: Item[]}) => {
         for (let i=0; i< res.data.length; i++) {
             let itemImage: {data: Blob};
@@ -23,7 +21,6 @@ export const getItems = async (): Promise<Item[]> => {
                 itemImage = await API.get(`/products/image/${res.data[i].image}`, {
                     responseType: 'blob' // Ensure we get the image as a blob
                 });
-                console.error("itemImage", itemImage, res.data[i].name);
 
                 if (itemImage.data) {
                     res.data[i].image  = URL.createObjectURL(itemImage.data)
@@ -37,8 +34,6 @@ export const getItems = async (): Promise<Item[]> => {
     };
 
     let updatedResWithImage = await getImages(res);
-
-    console.log("returned ", updatedResWithImage.data);
     return updatedResWithImage.data;
   } catch (error) {
      // handleApiError(error);

@@ -15,3 +15,6 @@
 6. Item page and magnifier
 7. Add a item add completed message and clear the fields
 8. Loader - add skeleton views
+
+
+useLayoutEffect instead of useEffect wher UI flickers occurs

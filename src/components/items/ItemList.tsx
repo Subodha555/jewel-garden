@@ -4,6 +4,7 @@ import { fetchItems, Item as ItemType } from "../../store/redux/reducers/itemLis
 import { useSelector } from "react-redux";
 import {useAppDispatch} from "../../store/redux/store"
 import { RootState } from "../../store/redux/store";
+import {RotatingLines} from "react-loader-spinner";
 
 const ItemList = () => {
     const [sortedItems, setSortedItems] = useState<ItemType[]>([]);
@@ -92,7 +93,6 @@ const ItemList = () => {
             //     tempSort = [...items].sort((a, b) => a.price - b.price);
             // }
             setSortedItems(tempSort);
-            console.log("on sort best offer", tempSort);
         }
     }, [items]);
 
@@ -125,8 +125,16 @@ const ItemList = () => {
                         date={item.dateCreated}
                     />
                 ))}
-                {isLoading && <div>Loading ....</div>}
             </div>
+            {isLoading &&
+                <div className="flex justify-center">
+                    <RotatingLines
+                        strokeColor="grey"
+                        strokeWidth="5"
+                        animationDuration="0.75"
+                        width="96"
+                        visible={true}/>
+                </div>}
         </div>
     );
 };
