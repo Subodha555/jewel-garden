@@ -22,7 +22,7 @@ function Login() {
     return (
         <div className="login flex flex-col">
             <div className="bg-contain bg-no-repeat bg-right py-36 bg-[#b4c5cb]" style={{backgroundImage: `url(${jewelLady})`, height: '100vh', width: '100vh'}}>
-                <div className="text-3xl" style={{    position: 'absolute', top: '40px', left: '45%'}}>Jewel Garden</div>
+                <div data-testid="cypress-login-title" className="text-3xl" style={{    position: 'absolute', top: '40px', left: '45%'}}>Jewel Garden</div>
                 <div className="" style={{    position: 'absolute', bottom: '0', left: '45%'}}>
                     {/*<input*/}
                     {/*    type="text"*/}
@@ -44,7 +44,7 @@ function Login() {
                     {/*>*/}
                     {/*    Login*/}
                     {/*</button>*/}
-                    <button className="login__btn login__google bg-primary" onClick={signInWithGoogle}>
+                    <button data-testid="cypress-login-g" className="login__btn login__google bg-primary" onClick={signInWithGoogle}>
                         Login with Google
                     </button>
                     {/*<div>*/}

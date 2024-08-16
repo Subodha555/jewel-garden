@@ -20,6 +20,12 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src"],
+  "include": [
+    "cypress",
+    "src",
+    "node_modules/cypress/types/cypress-global-vars.d.ts",
+    "node_modules/cypress/types/mocha/index.d.ts",
+    "node_modules/cypress/types/mocha/index.d.ts", "cypress.config.ts"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
