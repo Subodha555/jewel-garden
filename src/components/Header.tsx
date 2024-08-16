@@ -1,11 +1,11 @@
 import {useState, useEffect} from "react";
+import {Link, useLocation} from "react-router-dom";
 import {useSelector} from "react-redux";
+import {RootState} from "../store/redux/store";
+import {privateRoutes} from "../routes";
 import logo from "/imgs/app-logo.jpg";
 import userImg from "/public/imgs/user.svg";
 import jewelLady from "/imgs/jewel-lady-4.webp"
-import {privateRoutes} from "../routes";
-import {Link, useLocation} from "react-router-dom";
-import {RootState} from "../store/redux/store";
 
 const Header = () => {
     const [selectedMenu, setSelectedMenu] = useState(privateRoutes[0]);
@@ -48,17 +48,9 @@ const Header = () => {
                                 })
                             }
                         </div>
-                        {/*<a href="pages/login.html" className="text-gray-200 hover:text-white transition">Login</a>*/}
                         <div className="text-white flex">
                             <img src={user.image} alt="profile" onLoad={onLoad} className={isProfileImageLoaded ? `w-12 h-12 border-0 rounded-3xl` : `w-12 h-12 border-0 rounded-3xl hidden` }/>
                             {  !isProfileImageLoaded && <img src={userImg} className="w-12 h-12 border-grey-0 rounded-3xl bg-grey-300"/>}
-                            {/*<span className="pr-2">{user.name}</span>*/}
-                            {/*<span className="pr-2">|</span>*/}
-                            {/*<div>*/}
-                            {/*    <div>{user.email}</div>*/}
-                            {/*    <div>{user.name}</div>*/}
-                            {/*</div>*/}
-                            {/*{user.address}*/}
                         </div>
                     </div>
                 </div>

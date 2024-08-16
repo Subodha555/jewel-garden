@@ -77,7 +77,6 @@ const Admin = () => {
 
     const onInputChange = (e: ChangeEvent<HTMLInputElement>, field: keyof InitialItem) => {
         let tempProduct = {...product}
-        // tempProduct[field] = e.target.value;
 
         if (isStringField(field)) {
             tempProduct[field] = e.target.value as any;

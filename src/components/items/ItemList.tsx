@@ -1,74 +1,16 @@
-import Item from "./Item";
 import { useEffect, useState } from "react";
 import { fetchItems, Item as ItemType } from "../../store/redux/reducers/itemList";
 import { useSelector } from "react-redux";
 import {useAppDispatch} from "../../store/redux/store"
 import { RootState } from "../../store/redux/store";
 import {RotatingLines} from "react-loader-spinner";
+import Item from "./Item";
 
 const ItemList = () => {
     const [sortedItems, setSortedItems] = useState<ItemType[]>([]);
     // const [sortBy, setSortBy] = useState("recent");
     const [isLoading, setIsLoading] = useState(true);
-    const items = useSelector((state: RootState) => state.itemList.items) || []; // removeditems.data since this is fixed by store
-    // const items = [
-    //     {
-    //         id: "001",
-    //         priceLast: 12,
-    //         priceNow: 10.99,
-    //         title: "Cloe Ring",
-    //         date: "2024/03/01"
-    //     },
-    //     {
-    //         id: "002",
-    //         priceLast: 15,
-    //         priceNow: 12.99,
-    //         title: "Silver Necklace",
-    //         date: "2024/02/01"
-    //     },
-    //     {
-    //         id: "003",
-    //         priceLast: 56,
-    //         priceNow: 30.99,
-    //         title: "Gold Chain",
-    //         date: "2024/03/29"
-    //     },
-    //     {
-    //         id: "004",
-    //         priceLast: 12,
-    //         priceNow: 8.99,
-    //         title: "Silver Ring",
-    //         date: "2024/04/01"
-    //     },
-    //     {
-    //         id: "005",
-    //         priceLast: 122,
-    //         priceNow: 98.99,
-    //         title: "Emarald Bracelet",
-    //         date: "2024/03/05"
-    //     },
-    //     {
-    //         id: "006",
-    //         priceLast: 122,
-    //         priceNow: 98.99,
-    //         title: "Emarald Bracelet",
-    //         date: "2024/03/09"
-    //     },
-    //     {
-    //         id: "007",
-    //         priceLast: 122,
-    //         priceNow: 98.99,
-    //         title: "Emarald Bracelet",
-    //         date: "2024/03/03"
-    //     },
-    //     {
-    //         id: "008",
-    //         priceLast: 122,
-    //         priceNow: 98.99,
-    //         title: "Emarald Bracelet",
-    //         date: "2023/03/01"
-    //     }
-    // ];
+    const items = useSelector((state: RootState) => state.itemList.items) || [];
     const dispatch = useAppDispatch();
 
     useEffect(() => {
