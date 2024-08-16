@@ -1,8 +1,7 @@
-import {useLocation} from "react-router-dom";
 import {useState} from "react";
-import {maxItemsPurchaseCount} from "../utils/utils";
+import {useLocation} from "react-router-dom";
 import {currencyFormatter} from "../utils/formatters";
-
+import {maxItemsPurchaseCount} from "../utils/utils";
 
 const ItemView = () => {
     const location = useLocation();
@@ -24,9 +23,7 @@ const ItemView = () => {
 
     return (
         <div>
-            {/*<Item  img={img} currency={currency} priceLast={priceLast} priceNow={priceNow} title={title} date={date}/>*/}
             <div className="grid grid-cols-3 px-10 gap-4 h-[800px]">
-                {/*<div className="col-span-3 text-center p-10 text-4xl">Add Products</div>*/}
                 <div className="p-4">
                     <div>
                         <img src={img} alt="product 1" className="object-contain h-full group-hover: cursor-zoom-in" onMouseMove={onHover} onMouseLeave={onMouseLeave}/>
