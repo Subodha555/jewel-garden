@@ -36,7 +36,7 @@ const Header = () => {
             <nav className="bg-gray-800">
                 <div className="flex">
                     <div className="flex items-center justify-between flex-grow md:px-12 py-2">
-                        <Link to="home">
+                        <Link data-testid="logo-container" to="home">
                             <img src={logo} alt="Logo" className="w-12 h-12"/>
                         </Link>
                         <div className="flex items-center space-x-6 capitalize">
